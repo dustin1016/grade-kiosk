@@ -1,10 +1,12 @@
 import { useState } from "react";
 import Grades from "./Grades";
+import BirthdayCheck from "./BirthdayCheck";
 const StudentDetails = ({studentDetails}) =>{
     const [selectedTerm, setSelectedTerm] = useState("");
     const [errMsg, setErrMsg] = useState(null);
     const [grades, setGrades] = useState(null);
     const [fetching, setIsFetching] = useState(false)
+    const [birthdayCheck, setBirthdayCheck] = useState(false)
     const handleGoClick = () => {
         if (!selectedTerm) {
           alert("Please select a Semester.");
@@ -12,11 +14,11 @@ const StudentDetails = ({studentDetails}) =>{
         }
     
         // Fetch or perform action based on selectedTerm here
-        fetchStudentData();
+        fetchStudentGrades();
       };
 
 
-      const fetchStudentData = async () => {
+      const fetchStudentGrades = async () => {
 
         setErrMsg(null);
        
@@ -43,6 +45,40 @@ const StudentDetails = ({studentDetails}) =>{
           setGrades(data.grades);
         } catch (error) {
           setErrMsg(error.message)
+        }
+        setIsFetching(false)
+      };
+
+
+
+
+
+      const checkBdate = async (birthday) => {
+        if (birthday === ""){
+          return;
+        }
+        setErrorMsg(null);
+        setStudentData(null)
+        setIsFetching(true)
+        try {
+          const response = await fetch("http://10.125.2.222:8080/rptapi/student.php/bdayCheck", {
+            method: "POST", // Use POST to send data in the body
+            headers: {
+              "Content-Type": "application/json", // Tell the server you're sending JSON
+            },
+            body: JSON.stringify({ id:query }), // Send the query in the request body
+          });
+    
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || "Unknown error occurred");
+          }
+    
+          const data = await response.json();
+        
+          setStudentData(data.studentDetails[0]);
+        } catch (error) {
+          setErrorMsg(error.message)
         }
         setIsFetching(false)
       };
@@ -105,9 +141,20 @@ const StudentDetails = ({studentDetails}) =>{
           
         </div>
       )}
-        <h2 className="text-center font-semibold text-lg mt-4">View Grades</h2>
-        <TermDropDownSelect />
 
+      {birthdayCheck ? (
+        <>
+          <h2 className="text-center font-semibold text-lg mt-4">View Grades</h2>
+          <TermDropDownSelect />
+        </>
+      ):
+      (
+      
+          <BirthdayCheck setBirthdayCheck={setBirthdayCheck} studentNo={studentDetails.studentno} />
+        
+      )
+      }
+        
 
 
         {grades && (

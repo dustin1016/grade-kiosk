@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import CenteredInput from './widgets/CenteredInput'
 import StudentDetails from './widgets/StudentDetails';
+import { FiRefreshCcw } from "react-icons/fi";
 function App() {
   const [studentData, setStudentData] = useState(null)
   const [errorMsg, setErrorMsg] = useState(null);
   const [isFetchin, setIsFetching] = useState(false)
+  
+ 
   const fetchStudentData = async (query) => {
     if (query === ""){
       return;
@@ -36,13 +39,19 @@ function App() {
   };
 
 
+ 
+
+
+
+  
+
   
   return (
 
     <div className="relative">
       <div className="watermark-text">Not Valid For Legal Purposes</div>
- 
     <div className="flex flex-col items-center lg:justify-start min-h-screen bg-gray-100">
+      <h1 className='text-center text-lg font-semibold'>PalSU Online Student Grades Portal</h1>
         <CenteredInput onSearch={fetchStudentData} isFetching={isFetchin} />
         {
           errorMsg && (
@@ -53,7 +62,9 @@ function App() {
         }
 
         {studentData && (
-          <StudentDetails studentDetails={studentData} />
+               
+            <StudentDetails studentDetails={studentData} />       
+          
         )}
     </div>
 
