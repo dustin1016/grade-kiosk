@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Grades from "./Grades";
 import BirthdayCheck from "./BirthdayCheck";
+import { FiRefreshCcw } from "react-icons/fi";
 const StudentDetails = ({studentDetails}) =>{
     const [selectedTerm, setSelectedTerm] = useState("");
     const [errMsg, setErrMsg] = useState(null);
@@ -86,6 +87,7 @@ const StudentDetails = ({studentDetails}) =>{
     const TermDropDownSelect = () => {
         return (
             <div className="p-4">
+              
               <div className="flex items-center justify-center space-x-4">
                 <select
                   value={selectedTerm}
@@ -137,8 +139,19 @@ const StudentDetails = ({studentDetails}) =>{
               <div className="font-semibold text-gray-700">Major:</div>
               <div>{studentDetails.majordiscdesc}</div>
             </div>
+
+              <div className="w-full flex justify-center items-center text-center  my-2">
+                <button className="flex flex-row justify-center space-x-2 items-center w-32 bg-blue-600 rounded-md px-4 py-2 text-white"
+                
+                onClick={()=>{window.location.reload()}}>
+                  <p>Reset</p>
+                  <FiRefreshCcw />
+                </button> 
+              </div>
+              
+         
           </div>
-          
+       
         </div>
       )}
 

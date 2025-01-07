@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import CenteredInput from './widgets/CenteredInput'
 import StudentDetails from './widgets/StudentDetails';
-import { FiRefreshCcw } from "react-icons/fi";
+
 function App() {
   const [studentData, setStudentData] = useState(null)
   const [errorMsg, setErrorMsg] = useState(null);
