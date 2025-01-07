@@ -1,34 +1,63 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import CenteredInput from './widgets/CenteredInput'
+import StudentDetails from './widgets/StudentDetails';
 function App() {
-  const [count, setCount] = useState(0)
+  const [studentData, setStudentData] = useState(null)
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [isFetchin, setIsFetching] = useState(false)
+  const fetchStudentData = async (query) => {
+    if (query === ""){
+      return;
+    }
+    setErrorMsg(null);
+    setStudentData(null)
+    setIsFetching(true)
+    try {
+      const response = await fetch("http://10.125.2.222:8080/rptapi/student.php/x", {
+        method: "POST", // Use POST to send data in the body
+        headers: {
+          "Content-Type": "application/json", // Tell the server you're sending JSON
+        },
+        body: JSON.stringify({ id:query }), // Send the query in the request body
+      });
 
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Unknown error occurred");
+      }
+
+      const data = await response.json();
+    
+      setStudentData(data.studentDetails[0]);
+    } catch (error) {
+      setErrorMsg(error.message)
+    }
+    setIsFetching(false)
+  };
+
+
+  
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+
+    <div className="relative">
+      <div className="watermark-text">Not Valid For Legal Purposes</div>
+ 
+    <div className="flex flex-col items-center lg:justify-start min-h-screen bg-gray-100">
+        <CenteredInput onSearch={fetchStudentData} isFetching={isFetchin} />
+        {
+          errorMsg && (
+            <div className='mt-4 text-center text-md text-red-600'>
+              {errorMsg}
+            </div>
+          )
+        }
+
+        {studentData && (
+          <StudentDetails studentDetails={studentData} />
+        )}
+    </div>
+
+    </div>
   )
 }
 
