@@ -49,7 +49,8 @@ function App() {
   return (
 
     <div className="relative">
-      <div className="watermark-text">Not Valid For Legal Purposes</div>
+      <div className="watermark-text">This Document is</div>
+      <div className="watermark-text2">Not Valid For Legal Purposes</div>
       <div className="flex flex-col items-center lg:justify-start min-h-screen bg-gray-100">
         <h1 className='text-center text-lg font-semibold'>PalSU Online Student Grades Portal</h1>
           <CenteredInput onSearch={fetchStudentData} isFetching={isFetchin} />
