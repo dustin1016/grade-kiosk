@@ -16,7 +16,7 @@ function App() {
     setStudentData(null)
     setIsFetching(true)
     try {
-      const response = await fetch("https://10.125.2.222/student.php/x", {
+      const response = await fetch("http://localhost/rptapi/student.php/x", {
         method: "POST", // Use POST to send data in the body
         headers: {
           "Content-Type": "application/json", // Tell the server you're sending JSON
@@ -24,16 +24,17 @@ function App() {
         body: JSON.stringify({ id:query }), // Send the query in the request body
       });
 
-      // if (!response.ok) {
-      //   const errorData = await response.json();
-      //   throw new Error(errorData.error || "Unknown error occurred");
-      // }
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Unknown error occurred");
+      }
 
       const data = await response.json();
       console.log(data)
       setStudentData(data.studentDetails[0]);
     } catch (error) {
       setErrorMsg(error.message)
+      console.log(error)
     }
     setIsFetching(false)
   };
