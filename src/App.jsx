@@ -16,7 +16,7 @@ function App() {
     setStudentData(null)
     setIsFetching(true)
     try {
-      const response = await fetch("http://localhost/bgs/x", {
+      const response = await fetch("https://psu-api.palawan.edu.ph/bgs/x", {
     
         method: "POST", // Use POST to send data in the body
         headers: {

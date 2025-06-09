@@ -26,7 +26,7 @@ const StudentDetails = ({studentDetails}) =>{
         setIsFetching(true)
         try {
     
-          const response = await fetch("http://localhost/bgs/grades", {
+          const response = await fetch("https://psu-api.palawan.edu.ph/bgs/grades", {
             method: "POST", // Use POST to send data in the body
             headers: {
               "Content-Type": "application/json", // Tell the server you're sending JSON
