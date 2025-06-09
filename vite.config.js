@@ -5,7 +5,5 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: '/gk/',
   plugins: [react()],
-  server: {
-    host: true
-  }
+
 })
