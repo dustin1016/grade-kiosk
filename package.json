@@ -2,6 +2,7 @@
   "name": "grade-kiosk",
   "private": true,
   "version": "0.0.0",
+  "homepage":"/gk",
   "type": "module",
   "scripts": {
     "dev": "vite",
