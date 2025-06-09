@@ -11,7 +11,7 @@ const CenteredInput = ({onSearch, isFetching}) => {
         {/* textbox container */}
       <div className="mt-6 flex items-center border border-gray-300 rounded-lg overflow-hidden shadow-sm">
         <input
-          type="text"
+          type="tel"
           placeholder="Enter Student Number"
           className="px-4 py-2 outline-none w-80"
           value={query}

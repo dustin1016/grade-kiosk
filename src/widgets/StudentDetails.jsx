@@ -25,7 +25,8 @@ const StudentDetails = ({studentDetails}) =>{
        
         setIsFetching(true)
         try {
-          const response = await fetch("http://10.125.2.222:8080/rptapi/student.php/grades", {
+    
+          const response = await fetch("http://localhost/bgs/grades", {
             method: "POST", // Use POST to send data in the body
             headers: {
               "Content-Type": "application/json", // Tell the server you're sending JSON
