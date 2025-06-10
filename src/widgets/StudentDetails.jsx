@@ -88,7 +88,7 @@ const StudentDetails = ({studentDetails}) =>{
     return (
         <>
              {studentDetails && (
-        <div className="mt-8 flex justify-center w-[90%] md:w-80 border border-red-500">
+        <div className="mt-8 flex justify-center w-[90%] md:w-80 border border-slate-600 rounded-lg">
           <div className="bg-white shadow-md rounded-lg p-3 lg:p-6 w-full lg:max-w-md">
             <h2 className="text-xl font-bold mb-4 text-center">
               Student Details
