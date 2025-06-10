@@ -12,8 +12,8 @@ const CenteredInput = ({onSearch, isFetching}) => {
       <div className="mt-6 flex items-center border border-gray-300 rounded-lg overflow-hidden shadow-sm">
         <input
           type="tel"
-          placeholder="Enter Student Number"
-          className="px-4 py-2 outline-none w-80"
+          placeholder="Enter Student No. e.g. 2020-1-0000"
+          className="px-4 text-sm sm:text-md py-2 outline-none w-80"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />

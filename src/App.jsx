@@ -10,6 +10,7 @@ function App() {
  
   const fetchStudentData = async (query) => {
     if (query === ""){
+      setErrorMsg("Please Enter Student Number")
       return;
     }
     setErrorMsg(null);

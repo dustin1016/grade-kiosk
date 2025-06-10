@@ -17,7 +17,7 @@ body {
   left: 45%;
   transform: translate(-50%, -50%) rotate(-45deg);
   font-size: 1rem;
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.3);
   font-weight: bold;
   letter-spacing: 5px;
   text-transform: uppercase;
@@ -32,7 +32,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%) rotate(-45deg);
   font-size: 1rem;
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.3);
   font-weight: bold;
   letter-spacing: 5px;
   text-transform: uppercase;
