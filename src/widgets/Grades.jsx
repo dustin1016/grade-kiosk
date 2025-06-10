@@ -17,10 +17,10 @@ const Grades = ({studentGrades}) => {
             <tbody>
               {studentGrades.map((grade, index) => (
                 <tr key={index} className="border-t">
-                  <td className="px-4 py-2 text-sm text-gray-800">{grade.subjectcode}</td>
-                  <td className="px-4 py-2 text-sm text-gray-800">{grade.subjecttitle}</td>
-                  <td className="px-4 py-2 text-sm text-gray-800">{grade.midterm || ""}</td>
-                  <td className="px-4 py-2 text-sm text-gray-800">{grade.final || ""}</td>
+                  <td className="px-4 py-2 text-xs md:text-sm text-gray-800">{grade.subjectcode}</td>
+                  <td className="px-4 py-2 text-xs md:text-sm text-gray-800">{grade.subjecttitle}</td>
+                  <td className="px-4 py-2 text-xs md:text-sm text-gray-800">{grade.midterm || ""}</td>
+                  <td className="px-4 py-2 text-xs md:text-sm text-gray-800">{grade.final || ""}</td>
                 </tr>
               ))}
             </tbody>

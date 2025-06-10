@@ -65,7 +65,7 @@ const StudentDetails = ({studentDetails}) =>{
                 <select
                   value={selectedTerm}
                   onChange={(e) => setSelectedTerm(e.target.value)}
-                  className="p-2 border border-gray-300 rounded-md"
+                  className={`p-2 border border-gray-300 bg-slate-300 rounded-md ${selectedTerm !== "" && "bg-blue-300 font-semibold"}`}
                 >
                   <option value="">Select Semester</option>
                   {studentDetails.registrations.map((registration) => (
@@ -93,7 +93,7 @@ const StudentDetails = ({studentDetails}) =>{
             <h2 className="text-xl font-bold mb-4 text-center">
               Student Details
             </h2>
-            <div className="grid grid-cols-2 gap-4 text-xs sm:text-md md:text-lg">
+            <div className="grid grid-cols-2 gap-4 text-sm md:text-lg">
               <div className="font-semibold text-gray-700">Student No:</div>
               <div>{studentDetails.studentno}</div>
 
