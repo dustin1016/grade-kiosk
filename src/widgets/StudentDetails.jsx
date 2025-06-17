@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Grades from "./Grades";
 import BirthdayCheck from "./BirthdayCheck";
 import { FiRefreshCcw } from "react-icons/fi";
@@ -8,6 +8,11 @@ const StudentDetails = ({studentDetails}) =>{
     const [grades, setGrades] = useState(null);
     const [fetching, setIsFetching] = useState(false)
     const [birthdayCheck, setBirthdayCheck] = useState(false)
+    const [regPinActive, setRegPinActive] = useState(false);
+    const [pinCheck, setPinCheck] = useState(false);
+    const [isauth, setIsAuth] = useState(false);
+
+    
     const handleGoClick = () => {
         if (!selectedTerm) {
           alert("Please select a Semester.");
@@ -129,16 +134,23 @@ const StudentDetails = ({studentDetails}) =>{
       )}
 
       {birthdayCheck ? (
-        <>
-          <h2 className="text-center font-semibold text-lg mt-4">View Grades</h2>
-          <TermDropDownSelect />
-        </>
-      ):
-      (
-      
-          <BirthdayCheck setBirthdayCheck={setBirthdayCheck} studentNo={studentDetails.studentno} />
+          <div className="flex flex-col items-center gap-6 mt-3">
+           
+            {!studentDetails.hp && <button className="border border-slate-600 bg-cyan-600 text-white py-2 px-4 hover:bg-cyan-500 hover:border-slate-400 rounded-sm max-w-40 font-semibold">Set a PIN</button>}
+
+             <div>
+              <h2 className="text-center font-semibold text-lg">View Grades</h2>
+              <TermDropDownSelect />
+            </div>
+          </div>
+        ):
+        (
         
-      )
+          
+              <BirthdayCheck setBirthdayCheck={setBirthdayCheck} studentNo={studentDetails.studentno} />
+          
+          
+        )
       }
         
 

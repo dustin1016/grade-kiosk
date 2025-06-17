@@ -6,7 +6,7 @@ function App() {
   const [studentData, setStudentData] = useState(null)
   const [errorMsg, setErrorMsg] = useState(null);
   const [isFetchin, setIsFetching] = useState(false)
-  
+ 
  
   const fetchStudentData = async (query) => {
     if (query === ""){
@@ -17,7 +17,8 @@ function App() {
     setStudentData(null)
     setIsFetching(true)
     try {
-      const response = await fetch("https://psu-api.palawan.edu.ph/bgs/x", {
+      // const response = await fetch("https://psu-api.palawan.edu.ph/bgs/x", {
+      const response = await fetch("http://localhost/bgs/x", {
     
         method: "POST", // Use POST to send data in the body
         headers: {
@@ -32,7 +33,9 @@ function App() {
       }
 
       const data = await response.json();
+   
       console.log(data)
+      // spf(data.hp);
       setStudentData(data.studentDetails[0]);
     } catch (error) {
       setErrorMsg(error.message)
