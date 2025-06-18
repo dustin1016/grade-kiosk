@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import Grades from "./Grades";
-import BirthdayCheck from "./BirthdayCheck";
+import AuthPin from "./AuthPin";
 import { FiRefreshCcw } from "react-icons/fi";
+import RegisterPin from "./RegisterPin";
 const StudentDetails = ({studentDetails}) =>{
     const [selectedTerm, setSelectedTerm] = useState("");
     const [errMsg, setErrMsg] = useState(null);
     const [grades, setGrades] = useState(null);
     const [fetching, setIsFetching] = useState(false)
-    const [birthdayCheck, setBirthdayCheck] = useState(false)
-    const [regPinActive, setRegPinActive] = useState(false);
-    const [pinCheck, setPinCheck] = useState(false);
     const [isauth, setIsAuth] = useState(false);
+    const [hasPin, setHasPin] = useState(studentDetails.hp);
+
+
 
     
     const handleGoClick = () => {
@@ -48,7 +49,7 @@ const StudentDetails = ({studentDetails}) =>{
           }
     
           const data = await response.json();
-          console.log(data)
+         
           setGrades(data.grades);
         } catch (error) {
           setErrMsg(error.message)
@@ -133,11 +134,10 @@ const StudentDetails = ({studentDetails}) =>{
         </div>
       )}
 
-      {birthdayCheck ? (
+      {isauth ? (
           <div className="flex flex-col items-center gap-6 mt-3">
            
-            {!studentDetails.hp && <button className="border border-slate-600 bg-cyan-600 text-white py-2 px-4 hover:bg-cyan-500 hover:border-slate-400 rounded-sm max-w-40 font-semibold">Set a PIN</button>}
-
+           
              <div>
               <h2 className="text-center font-semibold text-lg">View Grades</h2>
               <TermDropDownSelect />
@@ -145,11 +145,15 @@ const StudentDetails = ({studentDetails}) =>{
           </div>
         ):
         (
-        
           
-              <BirthdayCheck setBirthdayCheck={setBirthdayCheck} studentNo={studentDetails.studentno} />
-          
-          
+              hasPin ? (
+                <AuthPin setIsAuth={setIsAuth} studentno={studentDetails.studentno} />
+              ) :
+              (
+                <RegisterPin studentno={studentDetails.studentno} setHasPin={setHasPin} />
+              )
+              
+            
         )
       }
         

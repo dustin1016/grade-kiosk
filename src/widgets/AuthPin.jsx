@@ -1,11 +1,11 @@
 import {useState} from "react";
-import BirthdayCheck from "./BirthdayCheck";
 
-const RegisterPin = ({studentno, setHasPin}) => {
+
+const AuthPin = ({studentno, setIsAuth}) => {
     const [pin, setPin] = useState("");
     const [status, setStatus] = useState("");
-    const [birthdayCheck, setBirthdayCheck] = useState(false);
-    const [prq, setPrq] = useState("");
+   
+   
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -16,20 +16,20 @@ const RegisterPin = ({studentno, setHasPin}) => {
     }
 
     try {
-      // const response = await fetch("http://localhost/bgs/reg_pin", {
-      const response = await fetch("https://psu-api.palawan.edu.ph/bgs/reg_pin", {
+    //   const response = await fetch("http://localhost/bgs/pin_auth", {
+      const response = await fetch("https://psu-api.palawan.edu.ph/bgs/pin_auth", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ id: studentno, rc: prq, pin: pin }),
+        body: JSON.stringify({ id: studentno, pin: pin }),
       });
 
       const data = await response.json(); // or response.json() if you send JSON
-      if (data){
-        setHasPin(true)
+      if (data.error){
+        setStatus(data.error)
       } else {
-        setStatus("Error submitting PIN.");
+        setIsAuth(true)
       }
     } catch (err) {
       console.log(err)
@@ -39,10 +39,9 @@ const RegisterPin = ({studentno, setHasPin}) => {
 
   return (
       <>
-      <h2 className="text-center font-semibold">Pin Registration</h2>
-        {birthdayCheck ? (
-              <form onSubmit={handleSubmit} className="p-4 flex flex-col gap-2 items-center max-w-sm mx-auto">
-                <label className="block mb-2 font-medium">Register 4-digit PIN:</label>
+      
+              <form onSubmit={handleSubmit} className="p-4 flex flex-col gap-2 items-center mt-2 max-w-sm mx-auto">
+                <label className="block mb-2 font-medium">Enter 4-digit PIN:</label>
                 <input
                   type="password"
                   value={pin}
@@ -53,22 +52,19 @@ const RegisterPin = ({studentno, setHasPin}) => {
                   placeholder="••••"
                   required
                 />
+                <p className="mb-2 text-sm text-red-700">{status}</p>
                 <button
                   type="submit"
                   className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                 >
-                  Register PIN
+                  Submit
                 </button>
-                <p className="mt-2 text-sm text-gray-700">{status}</p>
+                
               </form>
-        ):
-        (
-          <BirthdayCheck setBirthdayCheck={setBirthdayCheck} studentNo={studentno} setPrq={setPrq} />
-        )}
       </>
   );
 
 }
 
 
-export default RegisterPin;
+export default AuthPin;

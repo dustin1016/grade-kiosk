@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const BirthdayCheck = ({setBirthdayCheck, studentNo}) => {
+const BirthdayCheck = ({setBirthdayCheck, studentNo, setPrq}) => {
     const [selectedDate, setSelectedDate] = useState('');
     const [isValidating, setIsValidating] = useState(false);
     const [bdayError, setBdayError] = useState(false)
@@ -18,11 +18,12 @@ const BirthdayCheck = ({setBirthdayCheck, studentNo}) => {
           return;
         }
 
-        console.log(selectedDate)
+
         setBdayError(null);
         setIsValidating(true)
         try {
           const response = await fetch("https://psu-api.palawan.edu.ph/bgs/bdayCheck", {
+          // const response = await fetch("http://localhost/bgs/bdayCheck", {
        
             method: "POST", // Use POST to send data in the body
             headers: {
@@ -40,6 +41,7 @@ const BirthdayCheck = ({setBirthdayCheck, studentNo}) => {
           if (data.res){
 
               setBirthdayCheck(data.res)
+              setPrq(data.rc)
           } else {
             setBdayError(true)
           }
