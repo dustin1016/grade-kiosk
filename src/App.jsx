@@ -20,11 +20,11 @@ function App() {
       const response = await fetch("https://psu-api.palawan.edu.ph/bgs/x", {
     
     
-        method: "POST", // Use POST to send data in the body
+        method: "POST", 
         headers: {
-          "Content-Type": "application/json", // Tell the server you're sending JSON
+          "Content-Type": "application/json", 
         },
-        body: JSON.stringify({ id:query }), // Send the query in the request body
+        body: JSON.stringify({ id:query }), 
       });
 
       if (!response.ok) {
