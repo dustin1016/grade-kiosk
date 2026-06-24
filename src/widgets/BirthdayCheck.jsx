@@ -22,8 +22,8 @@ const BirthdayCheck = ({setBirthdayCheck, studentNo, setPrq}) => {
         setBdayError(null);
         setIsValidating(true)
         try {
-          const response = await fetch("https://psu-api.palawan.edu.ph/bgs/bdayCheck", {
-          // const response = await fetch("http://localhost/bgs/bdayCheck", {
+          const response = await fetch("http://my.domain/bgs/bdayCheck", {
+          // const response = await fetch("http://my.domain/bgs/bdayCheck", {
        
             method: "POST", // Use POST to send data in the body
             headers: {

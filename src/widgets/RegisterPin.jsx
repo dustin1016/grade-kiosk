@@ -16,8 +16,8 @@ const RegisterPin = ({studentno, setHasPin}) => {
     }
 
     try {
-      // const response = await fetch("http://localhost/bgs/reg_pin", {
-      const response = await fetch("https://psu-api.palawan.edu.ph/bgs/reg_pin", {
+      // const response = await fetch("http://my.domain/bgs/reg_pin", {
+      const response = await fetch("http://my.domain/bgs/reg_pin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

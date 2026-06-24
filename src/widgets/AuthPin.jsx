@@ -16,8 +16,8 @@ const AuthPin = ({studentno, setIsAuth}) => {
     }
 
     try {
-    //   const response = await fetch("http://localhost/bgs/pin_auth", {
-      const response = await fetch("https://psu-api.palawan.edu.ph/bgs/pin_auth", {
+    //   const response = await fetch("http://my.domain/bgs/pin_auth", {
+      const response = await fetch("http://my.domain/bgs/pin_auth", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
