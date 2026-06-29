@@ -17,7 +17,7 @@ function App() {
     setStudentData(null)
     setIsFetching(true)
     try {
-      const response = await fetch("http://my.domain/bgs/x", {
+      const response = await fetch("https://psu-api.palawan.edu.ph/bgs/x", {
     
     
         method: "POST", 
@@ -34,8 +34,8 @@ function App() {
 
       const data = await response.json();
    
-      console.log(data)
-      // spf(data.hp);
+      
+    
       setStudentData(data.studentDetails[0]);
     } catch (error) {
       setErrorMsg(error.message)
@@ -54,37 +54,37 @@ function App() {
   
   return (
 
-    <>
+    // <>
     
-        <div className="relative">
-            <h1 className='text-center text-lg font-semibold mt-10'>This Platform is Temporarily Unavailable as we are migrating your data to the new system.</h1>
+    //     <div className="relative">
+    //         <h1 className='text-center text-lg font-semibold mt-10'>This Platform is Temporarily Unavailable as we are migrating your data to the new system.</h1>
 
-        </div>
+    //     </div>
     
-    </>
+    // </>
 
-    // <div className="relative">
-    //       <div className="watermark-text">This Document is</div>
-    //       <div className="watermark-text2">Not Valid For Legal Purposes</div>
-    //       <div className="flex flex-col items-center lg:justify-start min-h-screen bg-gray-100">
-    //         <h1 className='text-center text-lg font-semibold'>PalSU Online Student Grades Portal</h1>
-    //           <CenteredInput onSearch={fetchStudentData} isFetching={isFetchin} />
-    //           {
-    //             errorMsg && (
-    //               <div className='mt-4 text-center text-md text-red-600'>
-    //                 {errorMsg}
-    //               </div>
-    //             )
-    //           }
+    <div className="relative">
+          <div className="watermark-text">This Document is</div>
+          <div className="watermark-text2">Not Valid For Legal Purposes</div>
+          <div className="flex flex-col items-center lg:justify-start min-h-screen bg-gray-100">
+            <h1 className='text-center text-lg font-semibold'>PalSU Online Student Grades Portal</h1>
+              <CenteredInput onSearch={fetchStudentData} isFetching={isFetchin} />
+              {
+                errorMsg && (
+                  <div className='mt-4 text-center text-md text-red-600'>
+                    {errorMsg}
+                  </div>
+                )
+              }
 
-    //           {studentData && (
+              {studentData && (
                     
-    //               <StudentDetails studentDetails={studentData} />       
+                  <StudentDetails studentDetails={studentData} />       
                 
-    //           )}
-    //       </div>
+              )}
+          </div>
 
-    // </div>
+    </div>
   )
 }
 

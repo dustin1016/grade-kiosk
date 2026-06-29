@@ -16,8 +16,8 @@ const AuthPin = ({studentno, setIsAuth}) => {
     }
 
     try {
-    //   const response = await fetch("http://my.domain/bgs/pin_auth", {
-      const response = await fetch("http://my.domain/bgs/pin_auth", {
+  
+      const response = await fetch("https://psu-api.palawan.edu.ph/bgs/pin_auth", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -25,11 +25,12 @@ const AuthPin = ({studentno, setIsAuth}) => {
         body: JSON.stringify({ id: studentno, pin: pin }),
       });
 
-      const data = await response.json(); // or response.json() if you send JSON
+      const data = await response.json(); 
       if (data.error){
         setStatus(data.error)
       } else {
-        setIsAuth(true)
+        localStorage.setItem("token", data);
+       setIsAuth(true)
       }
     } catch (err) {
       console.log(err)

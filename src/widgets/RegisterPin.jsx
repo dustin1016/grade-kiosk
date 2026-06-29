@@ -16,8 +16,8 @@ const RegisterPin = ({studentno, setHasPin}) => {
     }
 
     try {
-      // const response = await fetch("http://my.domain/bgs/reg_pin", {
-      const response = await fetch("http://my.domain/bgs/reg_pin", {
+     
+      const response = await fetch("https://psu-api.palawan.edu.ph/bgs/reg_pin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -25,7 +25,7 @@ const RegisterPin = ({studentno, setHasPin}) => {
         body: JSON.stringify({ id: studentno, rc: prq, pin: pin }),
       });
 
-      const data = await response.json(); // or response.json() if you send JSON
+      const data = await response.json(); 
       if (data){
         setHasPin(true)
       } else {

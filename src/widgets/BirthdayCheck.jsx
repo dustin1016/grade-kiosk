@@ -22,14 +22,13 @@ const BirthdayCheck = ({setBirthdayCheck, studentNo, setPrq}) => {
         setBdayError(null);
         setIsValidating(true)
         try {
-          const response = await fetch("http://my.domain/bgs/bdayCheck", {
-          // const response = await fetch("http://my.domain/bgs/bdayCheck", {
-       
-            method: "POST", // Use POST to send data in the body
+          const response = await fetch("https://psu-api.palawan.edu.ph/bgs/bdayCheck", {
+               
+            method: "POST", 
             headers: {
-              "Content-Type": "application/json", // Tell the server you're sending JSON
+              "Content-Type": "application/json", 
             },
-            body: JSON.stringify({ id:studentNo, bdate:selectedDate }), // Send the query in the request body
+            body: JSON.stringify({ id:studentNo, bdate:selectedDate }), 
           });
     
           if (!response.ok) {

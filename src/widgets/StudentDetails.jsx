@@ -10,7 +10,7 @@ const StudentDetails = ({studentDetails}) =>{
     const [fetching, setIsFetching] = useState(false)
     const [isauth, setIsAuth] = useState(false);
     const [hasPin, setHasPin] = useState(studentDetails.hp);
-
+    
 
 
     
@@ -20,7 +20,6 @@ const StudentDetails = ({studentDetails}) =>{
           return;
         }
     
-        // Fetch or perform action based on selectedTerm here
         fetchStudentGrades();
       };
 
@@ -31,11 +30,12 @@ const StudentDetails = ({studentDetails}) =>{
        
         setIsFetching(true)
         try {
-    
-          const response = await fetch("http://my.domain/bgs/grades", {
-            method: "POST", // Use POST to send data in the body
+          const token = localStorage.getItem("token");
+          const response = await fetch("https://psu-api.palawan.edu.ph/bgs/grades", {
+            method: "POST", 
             headers: {
-              "Content-Type": "application/json", // Tell the server you're sending JSON
+              "Content-Type": "application/json", 
+               "Authorization": `Bearer ${token}`, 
             },
             body: JSON.stringify({ 
                 id:studentDetails.studentno,
